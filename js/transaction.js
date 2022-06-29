@@ -133,7 +133,8 @@ function generateTxInfo(result, network) {
             output = header.replace('{{network}}', network);
 
             var confirmationBlock = new BigNumber(latestBlock) - new BigNumber(block.number);
-            var url = 'etherscan.io';
+            var url = 'appchain-v2.testnet.axiacoin.network/';
+            var endurl= '?network=AXIA';
 
             if (network.indexOf('kovan') > -1)
                 url = 'kovan.' + url;
@@ -170,8 +171,8 @@ function generateTxInfo(result, network) {
                             var tto = '';
 
                             if (log.topics[1])
-                                //ffrom = '<a class="address-tag" href="https://' + url + '/address/' + convertHex2Addr(log.topics[1]) + '" rel="nofollow">' + convertHex2Addr(log.topics[1]) + '</a>';
-                                ffrom =  convertHex2Addr(log.topics[1]);
+                                ffrom = '<a class="address-tag" href="https://' + url + '/address/' + convertHex2Addr(log.topics[1]) + '" rel="nofollow">' + convertHex2Addr(log.topics[1]) + endurl + '</a>';
+                    
                             if (log.topics[2])
                                 tto = '<a class="address-tag" href="https://' + url + '/address/' + convertHex2Addr(log.topics[2]) + '" rel="nofollow">' + convertHex2Addr(log.topics[2]) + '</a>';
 
