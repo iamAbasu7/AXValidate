@@ -146,6 +146,7 @@ function generateTxInfo(result, network) {
 
             var txHashUrl = result.hash ;
             var fromAddress = result.from;
+            var toAddress = result.to;
 
             output += lbl.replace('{{label}}', 'TxHash').replace('{{value}}', txHashUrl);
             output += lbl.replace('{{label}}', 'Status').replace('{{value}}', receipt.status == '0x1' ? '<span class="badge badge-success">Success</span>' : '<span class="badge badge-danger">Fail</span>');
@@ -153,7 +154,7 @@ function generateTxInfo(result, network) {
             output += lbl.replace('{{label}}', 'Block Height').replace('{{value}}', + new BigNumber(block.number).toString() +  '(' + confirmationBlock.toString() + ' block confirmations)');
             output += lbl.replace('{{label}}', 'From').replace('{{value}}',fromAddress );
             //output += lbl.replace('{{label}}', 'To').replace('{{value}}', '<a href="https://' + url + '/address/' + result.to + '" rel="nofollow">' + result.to + '</a>');
-            output += lbl.replace('{{label}}', 'To').replace('{{value}}');
+            output += lbl.replace('{{label}}', 'To').replace('{{value}}', toAddress) ;
             output += lbl.replace('{{label}}', 'Value').replace('{{value}}', getEtherValue(result.value).toString() + ' AXC');
 
             if (result.input !== '0x') {
