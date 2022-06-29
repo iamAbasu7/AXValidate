@@ -150,7 +150,7 @@ function generateTxInfo(result, network) {
             output += lbl.replace('{{label}}', 'Status').replace('{{value}}', receipt.status == '0x1' ? '<span class="badge badge-success">Success</span>' : '<span class="badge badge-danger">Fail</span>');
             //output += lbl.replace('{{label}}', 'Block Height').replace('{{value}}', '<a href="https://' + url + '/block/' + new BigNumber(block.number).toString() + '" rel="nofollow">' + new BigNumber(block.number).toString() + '</a> (' + confirmationBlock.toString() + ' block confirmations)');
             output += lbl.replace('{{label}}', 'Block Height').replace('{{value}}', + new BigNumber(block.number).toString() +  '(' + confirmationBlock.toString() + ' block confirmations)');
-            output += lbl.replace('{{label}}', 'From').replace('{{value}}', '<a href="https://' + url + '/address/' + result.from + '" rel="nofollow">' + result.from + '</a>');
+            output += lbl.replace('{{label}}', 'From').replace('{{value}}', result.from );
             //output += lbl.replace('{{label}}', 'To').replace('{{value}}', '<a href="https://' + url + '/address/' + result.to + '" rel="nofollow">' + result.to + '</a>');
             output += lbl.replace('{{label}}', 'To').replace('{{value}}');
             output += lbl.replace('{{label}}', 'Value').replace('{{value}}', getEtherValue(result.value).toString() + ' AXC');
