@@ -133,8 +133,7 @@ function generateTxInfo(result, network) {
             output = header.replace('{{network}}', network);
 
             var confirmationBlock = new BigNumber(latestBlock) - new BigNumber(block.number);
-            var url = 'appchain-v2.testnet.axiacoin.network/';
-            //var endurl= '?network=AXIA';
+            var url = 'etherscan.io';
 
             if (network.indexOf('kovan') > -1)
                 url = 'kovan.' + url;
@@ -145,19 +144,14 @@ function generateTxInfo(result, network) {
             else if (network.indexOf('goerli') > -1)
                 url = 'goerli.' + url;
 
-            var txHashUrl = result.hash ;
-            var fromAddress = result.from;
-            var toAddress = result.to;
-            var tokenName = log.symbol;
+            var txHashUrl ='<a href="https://' + url +'/tx/' + result.hash + '">' + result.hash + '</a>';
 
             output += lbl.replace('{{label}}', 'TxHash').replace('{{value}}', txHashUrl);
             output += lbl.replace('{{label}}', 'Status').replace('{{value}}', receipt.status == '0x1' ? '<span class="badge badge-success">Success</span>' : '<span class="badge badge-danger">Fail</span>');
-            //output += lbl.replace('{{label}}', 'Block Height').replace('{{value}}', '<a href="https://' + url + '/block/' + new BigNumber(block.number).toString() + '" rel="nofollow">' + new BigNumber(block.number).toString() + '</a> (' + confirmationBlock.toString() + ' block confirmations)');
-            output += lbl.replace('{{label}}', 'Block Height').replace('{{value}}', + new BigNumber(block.number).toString() +  '(' + confirmationBlock.toString() + ' block confirmations)');
-            output += lbl.replace('{{label}}', 'From').replace('{{value}}',fromAddress );
-            //output += lbl.replace('{{label}}', 'To').replace('{{value}}', '<a href="https://' + url + '/address/' + result.to + '" rel="nofollow">' + result.to + '</a>');
-            output += lbl.replace('{{label}}', 'To').replace('{{value}}', toAddress) ;
-            output += lbl.replace('{{label}}', 'Value').replace('{{value}}', getEtherValue(result.value).toString() + ' AXC');
+            output += lbl.replace('{{label}}', 'Block Height').replace('{{value}}', '<a href="https://' + url + '/block/' + new BigNumber(block.number).toString() + '" rel="nofollow">' + new BigNumber(block.number).toString() + '</a> (' + confirmationBlock.toString() + ' block confirmations)');
+            output += lbl.replace('{{label}}', 'From').replace('{{value}}', '<a href="https://' + url + '/address/' + result.from + '" rel="nofollow">' + result.from + '</a>');
+            output += lbl.replace('{{label}}', 'To').replace('{{value}}', '<a href="https://' + url + '/address/' + result.to + '" rel="nofollow">' + result.to + '</a>');
+            output += lbl.replace('{{label}}', 'Value').replace('{{value}}', getEtherValue(result.value).toString() + ' Ether');
 
             if (result.input !== '0x') {
 
@@ -172,13 +166,13 @@ function generateTxInfo(result, network) {
                             var tto = '';
 
                             if (log.topics[1])
-                                //ffrom = '<a class="address-tag" href="https://' + url + '/address/' + convertHex2Addr(log.topics[1]) + '" rel="nofollow">' + convertHex2Addr(log.topics[1]) + '</a>';
-                                ffrom =  fromAddress;
+                                ffrom = '<a class="address-tag" href="https://' + url + '/address/' + convertHex2Addr(log.topics[1]) + '" rel="nofollow">' + convertHex2Addr(log.topics[1]) + '</a>';
+
                             if (log.topics[2])
-                                //tto = '<a class="address-tag" href="https://' + url + '/address/' + convertHex2Addr(log.topics[2]) + '" rel="nofollow">' + convertHex2Addr(log.topics[2]) + '</a>';
-                                tto = toAddress;
+                                tto = '<a class="address-tag" href="https://' + url + '/address/' + convertHex2Addr(log.topics[2]) + '" rel="nofollow">' + convertHex2Addr(log.topics[2]) + '</a>';
+
                             if (log.topics[1] && log.topics[2]) {
-                                tokenTransfer += 'From : ' + ffrom + ' To : ' + tto + ' for ';
+                                tokenTransfer += 'From ' + ffrom + ' To ' + tto + ' for ';
 
                                 if (log.topics[3]){
                                     tokenTransfer += new BigNumber(log.topics[3]).toString();
@@ -187,12 +181,12 @@ function generateTxInfo(result, network) {
                                 }
 
                                 if (log.symbol !== "0x")
-                                    //tokenTransfer += ' <a href="https://' + url + '/token/' + result.to + '" rel="nofollow">' + log.symbol + '</a>';
-                                    tokenTransfer += tokenName;
+                                    tokenTransfer += ' <a href="https://' + url + '/token/' + result.to + '" rel="nofollow">' + log.symbol + '</a>';
+
                                 if (tokenTransfer.length > 0)
                                     tokenTransfer += '<br />';
                             } else {
-                                tokenTransfer = txHashUrl ;
+                                tokenTransfer = '<a href="https://' + url +'/tx/' + result.hash + '">View Transfer Details</a>';
                             }
                         }
                     });
@@ -210,8 +204,8 @@ function generateTxInfo(result, network) {
             var actualCost = gasUsed * gasPrice;
 
             output += lbl.replace('{{label}}', 'Gas Used').replace('{{value}}', gasUsed.toString());
-            output += lbl.replace('{{label}}', 'Gas Price').replace('{{value}}', gasPrice.toString() + ' AXC ' + '(' + getGweiValue(result.gasPrice).toString() + ' Gwei)');
-            output += lbl.replace('{{label}}', 'Tx Fee').replace('{{value}}', actualCost.toString() + ' AXC');
+            output += lbl.replace('{{label}}', 'Gas Price').replace('{{value}}', gasPrice.toString() + ' Ether ' + '(' + getGweiValue(result.gasPrice).toString() + ' Gwei)');
+            output += lbl.replace('{{label}}', 'Tx Fee').replace('{{value}}', actualCost.toString() + ' Ether');
             output += "</div></div>";
 
         }
@@ -223,4 +217,3 @@ function generateTxInfo(result, network) {
 
 
 }
-
