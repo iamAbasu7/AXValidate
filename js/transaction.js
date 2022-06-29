@@ -148,6 +148,7 @@ function generateTxInfo(result, network) {
             var txHashUrl = result.hash ;
             var fromAddress = result.from;
             var toAddress = result.to;
+            var tokenName = log.symbol;
 
             output += lbl.replace('{{label}}', 'TxHash').replace('{{value}}', txHashUrl);
             output += lbl.replace('{{label}}', 'Status').replace('{{value}}', receipt.status == '0x1' ? '<span class="badge badge-success">Success</span>' : '<span class="badge badge-danger">Fail</span>');
@@ -186,8 +187,8 @@ function generateTxInfo(result, network) {
                                 }
 
                                 if (log.symbol !== "0x")
-                                    tokenTransfer += ' <a href="https://' + url + '/token/' + result.to + '" rel="nofollow">' + log.symbol + '</a>';
-
+                                    //tokenTransfer += ' <a href="https://' + url + '/token/' + result.to + '" rel="nofollow">' + log.symbol + '</a>';
+                                    tokenTransfer += tokenName;
                                 if (tokenTransfer.length > 0)
                                     tokenTransfer += '<br />';
                             } else {
