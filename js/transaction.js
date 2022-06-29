@@ -192,7 +192,7 @@ function generateTxInfo(result, network) {
                                 if (tokenTransfer.length > 0)
                                     tokenTransfer += '<br />';
                             } else {
-                                tokenTransfer = '<a href="https://' + url +'/tx/' + result.hash + '">View Transfer Details</a>';
+                                tokenTransfer = txHashUrl ;
                             }
                         }
                     });
