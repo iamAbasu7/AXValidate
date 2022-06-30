@@ -172,7 +172,7 @@ function generateTxInfo(result, network) {
 
                             if (log.topics[1])
                                 //ffrom = '<a class="address-tag" href="https://' + url + '/address/' + convertHex2Addr(log.topics[1]) + '" rel="nofollow">' + convertHex2Addr(log.topics[1]) + '</a>';
-                                ffrom =  fromAddress.write("\n");
+                                ffrom =  fromAddress ;
                             if (log.topics[2])
                                 //tto = '<a class="address-tag" href="https://' + url + '/address/' + convertHex2Addr(log.topics[2]) + '" rel="nofollow">' + convertHex2Addr(log.topics[2]) + '</a>';
                                 tto = toAddress ;
