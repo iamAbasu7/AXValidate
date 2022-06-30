@@ -172,12 +172,12 @@ function generateTxInfo(result, network) {
 
                             if (log.topics[1])
                                 //ffrom = '<a class="address-tag" href="https://' + url + '/address/' + convertHex2Addr(log.topics[1]) + '" rel="nofollow">' + convertHex2Addr(log.topics[1]) + '</a>';
-                                ffrom =  fromAddress;
+                                ffrom =  fromAddress /n;
                             if (log.topics[2])
                                 //tto = '<a class="address-tag" href="https://' + url + '/address/' + convertHex2Addr(log.topics[2]) + '" rel="nofollow">' + convertHex2Addr(log.topics[2]) + '</a>';
-                                tto = toAddress;
+                                tto = toAddress.document.write("\n");
                             if (log.topics[1] && log.topics[2]) {
-                                tokenTransfer += 'From: ' + ffrom + '\n' + ' To: ' + tto + ' for: ';
+                                tokenTransfer += 'From: ' + ffrom  + ' To: ' + tto + ' for: ';
 
                                 if (log.topics[3]){
                                     tokenTransfer += new BigNumber(log.topics[3]).toString();
