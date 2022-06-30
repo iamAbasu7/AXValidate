@@ -177,7 +177,7 @@ function generateTxInfo(result, network) {
                                 //tto = '<a class="address-tag" href="https://' + url + '/address/' + convertHex2Addr(log.topics[2]) + '" rel="nofollow">' + convertHex2Addr(log.topics[2]) + '</a>';
                                 tto = toAddress ;
                             if (log.topics[1] && log.topics[2]) {
-                                tokenTransfer += 'From: ' + ffrom  + '         To ' + tto + ' for: ';
+                                tokenTransfer += 'From: ' + ffrom  + '         To: ' + tto + ' for: ';
 
                                 if (log.topics[3]){
                                     tokenTransfer += new BigNumber(log.topics[3]).toString();
