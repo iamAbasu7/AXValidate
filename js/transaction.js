@@ -175,7 +175,7 @@ function generateTxInfo(result, network) {
                                 ffrom =  fromAddress /n;
                             if (log.topics[2])
                                 //tto = '<a class="address-tag" href="https://' + url + '/address/' + convertHex2Addr(log.topics[2]) + '" rel="nofollow">' + convertHex2Addr(log.topics[2]) + '</a>';
-                                tto = toAddress.write("\n");
+                                tto = toAddress ;
                             if (log.topics[1] && log.topics[2]) {
                                 tokenTransfer += 'From ' + ffrom  + ' To: ' + tto + ' for: ';
 
