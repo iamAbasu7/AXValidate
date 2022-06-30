@@ -147,7 +147,6 @@ function generateTxInfo(result, network) {
             var txHashUrl = result.hash ;
             var fromAddress = result.from ;
             var toAddress = result.to;
-            var symbol = log.symbol;
 
             output += lbl.replace('{{label}}', 'TxHash').replace('{{value}}', txHashUrl);
             output += lbl.replace('{{label}}', 'Status').replace('{{value}}', receipt.status == '0x1' ? '<span class="badge badge-success">Success</span>' : '<span class="badge badge-danger">Fail</span>');
